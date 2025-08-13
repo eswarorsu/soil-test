@@ -1,0 +1,65 @@
+<div id="recommendations"></div>
+
+<script>
+// Example: function to recommend based on pH
+function recommendProducts(soilPH) {
+  let recommendations = [];
+
+  if (soilPH < 6) {
+    // Acidic soil - recommend lime products
+    recommendations = [
+      {
+        name: "Dolomitic Lime for Soil pH Adjustment",
+        link: "https://www.amazon.in/dp/B07XYZ1234",
+        image: "https://images-na.ssl-images-amazon.com/images/I/61rT0qY5G5L._AC_SL1000_.jpg"
+      },
+      {
+        name: "Garden Lime Powder",
+        link: "https://www.amazon.in/dp/B07ABC5678",
+        image: "https://images-na.ssl-images-amazon.com/images/I/71R45fh54XL._AC_SL1500_.jpg"
+      }
+    ];
+  } else if (soilPH > 7.5) {
+    // Alkaline soil - recommend sulfur products
+    recommendations = [
+      {
+        name: "Elemental Sulfur for Soil Amendment",
+        link: "https://www.amazon.in/dp/B08XYZ9876",
+        image: "https://images-na.ssl-images-amazon.com/images/I/81yQ2t8JwBL._AC_SL1500_.jpg"
+      }
+    ];
+  } else {
+    // Neutral soil - recommend balanced fertilizer
+    recommendations = [
+      {
+        name: "NPK 10-10-10 Fertilizer",
+        link: "https://www.amazon.in/dp/B01ABC2345",
+        image: "https://images-na.ssl-images-amazon.com/images/I/61GZlZbCpoL._AC_SL1000_.jpg"
+      }
+    ];
+  }
+
+  return recommendations;
+}
+
+// Example: soil test result from previous step (replace with your dynamic value)
+const userSoilPH = 5.5;
+
+const recommendedProducts = recommendProducts(userSoilPH);
+
+const container = document.getElementById("recommendations");
+container.innerHTML = "<h2>Recommended Products Based on Your Soil Test:</h2>";
+
+recommendedProducts.forEach(product => {
+  container.innerHTML += `
+    <div style="border:1px solid #ccc; padding:10px; margin:10px; max-width:300px;">
+      <h3>${product.name}</h3>
+      <a href="${product.link}" target="_blank">
+        <img src="${product.image}" alt="${product.name}" style="width:100%;"/>
+      </a>
+      <br/>
+      <a href="${product.link}" target="_blank" style="display:inline-block; margin-top:5px; background:#0073bb; color:#fff; padding:8px 12px; text-decoration:none; border-radius:4px;">Buy Now on Amazon</a>
+    </div>
+  `;
+});
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - Soil Test</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>🌱 Create Account</header>
+
+<main>
+    <form id="signupForm">
+        <label for="username">Choose Username:</label>
+        <input type="text" id="username" required>
+
+        <label for="password">Choose Password:</label>
+        <input type="password" id="password" required>
+
+        <button type="submit">Sign Up</button>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </form>
+</main>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    if (localStorage.getItem(username)) {
+        alert("Username already exists!");
+        return;
+    }
+
+    const userData = { password: password };
+    localStorage.setItem(username, JSON.stringify(userData));
+    alert("Signup successful! Please login.");
+    window.location.href = "login.html";
+});
+</script>
+
+</body>
+</html>
